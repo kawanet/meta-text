@@ -4,12 +4,10 @@ module.exports = function(grunt) {
 
   var pkg = require('./package.json');
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.loadTasks('./tasks');
 
@@ -50,8 +48,50 @@ module.exports = function(grunt) {
       options: {
         reporter: 'spec'
       }
+    },
+
+    // https://github.com/jmreidy/grunt-browserify
+    browserify: {
+      all: {
+        files: {
+          './build/meta-text.browserify.js': ['./index.js']
+        },
+        options: {
+          standalone: 'metatext'
+        }
+      }
+    },
+
+    // https://github.com/gruntjs/grunt-contrib-uglify
+    uglify: {
+      all: {
+        files: {
+          './build/meta-text.min.js': ['./build/meta-text.browserify.js']
+        },
+        options: {
+          banner: '/*! ' + pkg.name + ' ' + pkg.version + ' */\n'
+        }
+      }
+    },
+
+    // tasks/quote-json.js
+    quoteJson: {
+      bower: {
+        src: 'package.json',
+        dest: 'bower.json',
+        options: {
+          fields: {
+            name: 1,
+            version: 1,
+            homepage: 1,
+            description: 1,
+            repository: 1
+          }
+        }
+      }
     }
   });
 
+  grunt.registerTask('build', ['quoteJson', 'browserify', 'uglify']);
   grunt.registerTask('default', ['jshint', 'mochaTest']);
 };

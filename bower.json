@@ -1,0 +1,20 @@
+{
+  "name": "meta-text",
+  "version": "0.0.1",
+  "description": "parse() and dump() YAML/JSON metadata combined with text content",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kawanet/meta-text.git"
+  },
+  "main": "public/js/kagodb.min.js",
+  "ignore": [
+    "**/.*",
+    "lib",
+    "node_modules",
+    "tasks",
+    "test",
+    "Gruntfile.js",
+    "index.js",
+    "package.json"
+  ]
+}
