@@ -1,0 +1,26 @@
+{
+  "name": "meta-text",
+  "version": "0.0.1",
+  "description": "parse() and dump() YAML/JSON metadata combined with text content",
+  "main": "index.js",
+  "dependencies": {
+    "js-yaml": "~2.1.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-mocha-test": "~0.4.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "keywords": [
+      "yaml",
+      "markdown",
+      "jekyll",
+      "json"
+  ],
+  "author": "https://github.com/kawanet/",
+  "license": "MIT"
+}
